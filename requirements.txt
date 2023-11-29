@@ -1,0 +1,7 @@
+google-generativeai
+pandas
+streamlit
+scikit-learn==1.2.2
+deep_translator
+smtplib
+email
