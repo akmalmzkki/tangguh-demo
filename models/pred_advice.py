@@ -3,7 +3,7 @@ import streamlit as st
 import pickle
 from secret.getApi import palm_api_key, gpt4_api_key
 from models.chatbot.palm import palm_generate_text
-from models.chatbot.gpt4 import gpt4_chatbot
+from models.chatbot.gpt4 import gpt4_generate_text
 from helper.translator import translate
 
 def predict_prompt(sex, age, birth_weight, birth_length, body_weight, body_length, asi):
@@ -70,7 +70,8 @@ def models(model, prompt_template):
     if model == "Palm":
         response = palm_generate_text(prompt_template, palm_api_key())
     else:
-        response = gpt4_chatbot(prompt_template, gpt4_api_key())
+        # response = gpt4_chatbot(prompt_template, gpt4_api_key())
+        response = gpt4_generate_text(prompt_template, gpt4_api_key())
         
     return response
 

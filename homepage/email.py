@@ -26,11 +26,11 @@ def send_mail():
     col1, col2 = st.columns(2)
     with col1:
         sender = st.text_input('Masukkan email Anda') 
-    password = st.text_input('Masukkan password email Anda (harus menggunakan password aplikasi)', type='password')
+    subject = st.text_input('Masukkan subjek kritik dan saran') 
     receiver = "tangguhinnovillage@gmail.com"
     
     with col2:
-        subject = st.text_input('Masukkan subjek kritik dan saran') 
+        password = st.text_input('Masukkan password email Anda (harus menggunakan password aplikasi)', type='password')
     message = st.text_area('Masukkan kritik dan saran')
     
     if st.button('📤 Kirim Pesan'): 
