@@ -70,7 +70,6 @@ def models(model, prompt_template):
     if model == "Palm":
         response = palm_generate_text(prompt_template, palm_api_key())
     else:
-        # response = gpt4_chatbot(prompt_template, gpt4_api_key())
         response = gpt4_generate_text(prompt_template, gpt4_api_key())
         
     return response
@@ -79,8 +78,6 @@ def pred_advice():
     st.markdown("## 🍼 Prediksi Stunting pada Bayi Disertai Dengan Saran")
     
     st.divider()
-    # with open('model.pkl', 'rb') as file:
-    #     data = pickle.load(file)
     
     genAi1, genAi2 = st.columns(2)
     model = st.session_state.get("model", "Palm")
@@ -101,16 +98,17 @@ def pred_advice():
     SEX = ['Laki-laki', 'Perempuan']
     ASI = ['Ya, mendapatkan 😁', 'Tidak 😢']
 
-    asi = st.selectbox("Apakah bayi mendapatkan ASI eksklusif?", ASI)        
     col1, col2 = st.columns(2)
 
         
     with col1:
+        nama = st.text_input("Masukkan nama bayi")
         sex = st.selectbox("Pilih gender", SEX)
         age = st.number_input("Masukkan umur bayi dalam bulan", min_value=1, max_value=59)
         birth_weight = st.number_input("Masukkan berat badan saat lahir dalam kilogram", min_value=1.8, max_value=4.0)
         
     with col2:
+        asi = st.selectbox("Apakah bayi mendapatkan ASI eksklusif?", ASI)        
         birth_length = st.number_input("Masukkan panjang badan saat lahir dalam centimeter", min_value=42.0, max_value=52.0)
         body_weight = st.number_input("Masukkan berat badan bayi dalam kilogram", min_value=2.9, max_value=24.5)
         body_length = st.number_input("Masukkan panjang badan bayi dalam centimeter", min_value=53.0, max_value=111.0)
@@ -123,11 +121,10 @@ def pred_advice():
         body_weight=body_weight,
         body_length=body_length,
         asi="Yes" if asi == "Ya, mendapatkan 😁" else "No"
-        # data=data
     )
     
     with col1:
-        prediksi = st.button("🔎 Lakukan prediksi dan pencarian")
+        prediksi = st.button("🔎 Lakukan prediksi dan pencarian", disabled=False if nama else True)
         
     with col2:
         clear = st.button("🗑️ Bersihkan output")
